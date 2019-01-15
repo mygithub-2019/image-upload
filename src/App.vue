@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <a class="card-link" data-toggle="collapse" href="#collapseOne">
-            Upload Image
+            {{ uploadImageTitle }}
           </a>
           <span class="bold" style="float: right"> Date: {{ new Date()}}</span>
         </div>
@@ -36,7 +36,7 @@
       <span @click="deleteFile(index)" class="deleteFile">{{ index }}</span>
       </div>
       <div v-if="images.length == 0">
-        <p>No images are uploaded. Please upload some image(s)</p>
+        <p>{{ noImageUploadMsg }}</p>
       </div>
   </div>
         
@@ -44,14 +44,18 @@
 </template>
 
 <script>
+
+import CONSTANTS from './static/constants'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       images: [],
       justnow: "",
-      size: 0
+      size: 0,
+      noImageUploadMsg: CONSTANTS.NO_IMAGE_UPLOAD_MESSAGE,
+      uploadImageTitle: CONSTANTS.UPLOAD_IMAGE_TITLE,
+      uploadErrorMsg: CONSTANTS.UPLOAD_IMAGE_ERROR_MESSAGE
     }
   },
   methods:{
